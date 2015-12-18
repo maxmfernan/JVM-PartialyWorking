@@ -1284,7 +1284,7 @@ void printSTR_str(u2 index) {
     	u4 aux_uint_lo;
     	u8 aux_uint_dbl;
     	
-    	void *aux_dbl;
+    	//void *aux_dbl;
     	aux_uint_dbl = aux_uint_hi = aux_uint_lo = 0;
 
         aux_uint_hi = pool_global[index-1].info.CONSTANT_LongDouble_info.high_bytes;
@@ -1293,7 +1293,7 @@ void printSTR_str(u2 index) {
         aux_uint_dbl = aux_uint_hi;
         aux_uint_dbl = aux_uint_dbl << 32;
         aux_uint_dbl = aux_uint_dbl | aux_uint_lo;
-        aux_dbl = ( (void*)&aux_uint_dbl );
+        //aux_dbl = ( (void*)&aux_uint_dbl );
     	
     	printf("\t// long %llil\n",(long long) aux_uint_dbl);
     	
