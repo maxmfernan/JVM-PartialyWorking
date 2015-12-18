@@ -203,8 +203,8 @@ void classCheck (ClassFile class) {
 			}
 		}
 		// Verifica se é um método de inicialização
-		if (!strcmp("<init>", class.constant_pool[class.methods[i].name_index].info.CONSTANT_Utf8_info.bytes) ||\
-		!strcmp("<clinit>", class.constant_pool[class.methods[i].name_index].info.CONSTANT_Utf8_info.bytes)) {
+		if (!strcmp("<init>", (char*)class.constant_pool[class.methods[i].name_index].info.CONSTANT_Utf8_info.bytes) ||\
+		!strcmp("<clinit>", (char*)class.constant_pool[class.methods[i].name_index].info.CONSTANT_Utf8_info.bytes)) {
 			if (strict) {
 				if (abstract || sync || final || native || stat ) {
 					printf("Se for STRICT, um método <init> ou <clinit>, não pode ter nenhum outro modificador que não sejam PUBLIC, PROTECTED OU PRIVATE.\n");
