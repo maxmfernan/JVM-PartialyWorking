@@ -22,7 +22,7 @@ dataMSize_t dmSize;
 Frame **stackFrame;
 Frame *executionFrame;
 MethodHeap mHeap;
-char *basePath;
+u1 *basePath;
 Heap objHeap;
 int saiu;
 
@@ -59,7 +59,7 @@ void jvmStartup(char *classPathStr, int flag){
     }
     printf("\n---%s---\n", classPathStr);
     
-    loadClass(classPathStr);
+    loadClass((u1*)classPathStr);
 
     method_info* _main = getMainMethod();
     if (_main == NULL) {

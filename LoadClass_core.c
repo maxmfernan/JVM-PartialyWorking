@@ -496,8 +496,8 @@ field_info *field_func(FILE *class_f, unsigned int offset, unsigned int *bytes_p
                     att_nameidx_ptr = (u2*) swapEndianess(&buffer_u2, buffer_size);
                     idx = fields_array[i].attributes[j].attribute_name_index = *att_nameidx_ptr;
                     *bytes_ptr += 2;
-                    //printf("\nAttributes name_index %x\nContador de bytes %d\n",\
-                           fields_array[i].attributes[j].attribute_name_index, *bytes_ptr ); //TESTE
+                    /* printf("\nAttributes name_index %x\nContador de bytes %d\n",\
+                           fields_array[i].attributes[j].attribute_name_index, *bytes_ptr ); */ //TESTE
                     
                     //Quantidade de bytes do atributo, excluindo estes 4 e os 2 anteriores.
                     fread(&buffer_u4, sizeof(buffer_u4), 1, class_f);
@@ -506,8 +506,8 @@ field_info *field_func(FILE *class_f, unsigned int offset, unsigned int *bytes_p
                     att_len_ptr = (u4*) swapEndianess(&buffer_u4, buffer_size);
                     fields_array[i].attributes[j].attribute_length = *att_len_ptr;
                     *bytes_ptr += 4;
-                    //printf("\nAttributes length %x\nContador de bytes %d\n",\
-                           fields_array[i].attributes[j].attribute_length, *bytes_ptr ); //TESTE
+                    /*printf("\nAttributes length %x\nContador de bytes %d\n",\
+                           fields_array[i].attributes[j].attribute_length, *bytes_ptr ); */ //TESTE
                     
                     //	break; // TESTE
                     

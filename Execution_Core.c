@@ -25,7 +25,7 @@ extern dataMSize_t dmSize;
 extern Frame **stackFrame;
 extern Frame *executionFrame;
 extern MethodHeap mHeap;
-extern char *basePath;
+extern u1 *basePath;
 extern Heap objHeap;
 extern int saiu;
 
@@ -101,8 +101,8 @@ int loadInterfaces(ClassFile *class) {
 }
 
 
-int loadClass(char *name) {
-    strtok(name, ";");
+int loadClass(u1 *name) {
+    strtok((char*)name, ";");
     if(name == NULL){
         return -1;
     }
@@ -133,24 +133,24 @@ int loadClass(char *name) {
 /*!
 	retorna a concatenacao do nome qualificado da classe com base_path e com .class
  */
-char* getClassPath(char* base_path, char* class_name) {
-    char* path = (char*)malloc(strlen(base_path)+strlen(class_name) + 8);
-    if (strstr(class_name,".class") != NULL) {
-        if (strlen(base_path)==0)
-            sprintf(path, "%s%s", base_path, class_name);
+char* getClassPath(u1* base_path, u1* class_name) {
+    char* path = (char*)malloc(strlen((char*)base_path)+strlen((char*)class_name) + 8);
+    if (strstr((char*)class_name,".class") != NULL) {
+        if (strlen((char*)base_path)==0)
+            sprintf(path, "%s%s", (char*)base_path, (char*)class_name);
         else
-            sprintf(path, "%s/%s", base_path, class_name);
+            sprintf(path, "%s/%s", (char*)base_path, (char*)class_name);
         return path;
     }
-    else if (!strcmp(class_name,"java/lang/Object")
-             || !strcmp(class_name,"java/lang/System")
-             || !strcmp(class_name,"java/io/PrintStream")
-             || !strcmp(class_name,"java/lang/String")) {
+    else if (!strcmp((char*)class_name,"java/lang/Object")
+             || !strcmp((char*)class_name,"java/lang/System")
+             || !strcmp((char*)class_name,"java/io/PrintStream")
+             || !strcmp((char*)class_name,"java/lang/String")) {
         
-        sprintf(path, "%s.class", class_name);
+        sprintf(path, "%s.class", (char*)class_name);
         return path;
     } else {
-        sprintf(path, "%s%s.class", base_path, class_name);
+        sprintf(path, "%s%s.class", (char*)base_path, (char*)class_name);
         return path;
     }
 }

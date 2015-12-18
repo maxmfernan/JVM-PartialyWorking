@@ -59,7 +59,7 @@ int equalsTags (ClassFile class, u1 tag, u2 index) {
  * @param ClassFile class 	Classe que será verificada.
  */
 void classCheck (ClassFile class) {
-	u2 major = 0x002e;
+	//u2 major = 0x002e;
 	int public, private, protected, final, volat, stat, abstract, sync, native, strict;
 	int i, j, k, l, constantV, code, exceptionFlag, source;
 	
