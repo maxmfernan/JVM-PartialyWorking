@@ -64,6 +64,7 @@ void jvmStartup(char *classPathStr, int flag){
     method_info* _main = getMainMethod();
     if (_main == NULL) {
         printf("nao tem main\n");
+        exit(1);
     }
      
     //error(E_NO_MAIN_FOUND);
