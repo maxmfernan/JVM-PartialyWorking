@@ -361,6 +361,7 @@ void print_Methods(ClassFile *classFileVar, cp_info *pool) {
 void print_attributes (attribute_info *attributes, u2 attr_count, cp_info *pool) {
     u2 counter = 0;
     u2 pcIdx;
+    u2 idx1, idx2;
     
     
     while (counter < attr_count) {
@@ -443,38 +444,44 @@ void print_attributes (attribute_info *attributes, u2 attr_count, cp_info *pool)
                             //i+= 2;
                         	printf("%s", opcodes_str_names[op_sipush]);
 
-                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[++i], \
-                        	attributes[counter].info.Code_attribute.code[++i]);
+                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[idx1], \
+                        	attributes[counter].info.Code_attribute.code[idx2]);
                         	printf("\t\t%hd\n", (short)pcIdx);
                         	break;
                         case op_ldc: 
                             //i++;
                         	printf("%s", opcodes_str_names[op_ldc]);
-                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[++i], \
+                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[idx1], \
                         	0);
                         	printf("\t\t#%d", pcIdx);
                         	printSTR_str(pcIdx);
                         	break;
                         case op_ldc_w: 
                             //i+=2;
+							idx1 = ++i;
+							idx2 = ++i;
+
                         	printf("%s", opcodes_str_names[op_ldc_w]);
-                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[++i], \
-                        	attributes[counter].info.Code_attribute.code[++i]);
+                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[idx1], \
+                        	attributes[counter].info.Code_attribute.code[idx2]);
                         	printf("\t\t#%d", pcIdx);
                         	printSTR_str(pcIdx);
                         	break;
                         case op_ldc2_w: 
                             //i+=2;
+							idx1 = ++i;
+							idx2 = ++i;
+
                         	printf("%s", opcodes_str_names[op_ldc2_w]);
-                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[++i], \
-                        	attributes[counter].info.Code_attribute.code[++i]);
+                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[idx1], \
+                        	attributes[counter].info.Code_attribute.code[idx2]);
                         	printf("\t\t#%d", pcIdx);
                         	printSTR_str(pcIdx);
                         	break;
                         case op_iload: 
                             //i++;
                         	printf("%s", opcodes_str_names[op_iload]);
-                        	printf("\t\t%d\n", attributes[counter].info.Code_attribute.code[++i]);
+                        	printf("\t\t%d\n", attributes[counter].info.Code_attribute.code[idx2]);
                         	break;
                         case op_lload: 
                             i++;
@@ -579,7 +586,7 @@ void print_attributes (attribute_info *attributes, u2 attr_count, cp_info *pool)
                         case op_istore: 
                             //i++;
                         	printf("%s", opcodes_str_names[op_istore]);
-                        	printf("\t\t%d\n", attributes[counter].info.Code_attribute.code[++i]);
+                        	printf("\t\t%d\n", attributes[counter].info.Code_attribute.code[idx2]);
                         	break;
                         case op_lstore: 
                             i++;
@@ -596,7 +603,7 @@ void print_attributes (attribute_info *attributes, u2 attr_count, cp_info *pool)
                         case op_astore: 
                             //i++;
                         	printf("%s", opcodes_str_names[op_astore]);                        	
-                        	printf("\t\t%d\n", attributes[counter].info.Code_attribute.code[++i]);
+                        	printf("\t\t%d\n", attributes[counter].info.Code_attribute.code[idx2]);
                         	break;
                         case op_istore_0: 
                         	printf("%s\n", opcodes_str_names[op_istore_0]);
@@ -974,19 +981,25 @@ void print_attributes (attribute_info *attributes, u2 attr_count, cp_info *pool)
                         	printf("%s\n", opcodes_str_names[op_return]);
                         	break;
                         case op_getstatic: 
-                            //i+=2; 
+                            //i+=2;
+							idx1 = ++i;
+							idx2 = ++i;
+ 
                         	printf("%s", opcodes_str_names[op_getstatic]);
-                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[++i], \
-                        	attributes[counter].info.Code_attribute.code[++i]);
+                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[idx1], \
+                        	attributes[counter].info.Code_attribute.code[idx2]);
 
                         	printf("\t#%d", pcIdx);
                         	printFMI_str(pcIdx);
                         	break;
                         case op_putstatic: 
                             //i+=2;
+							idx1 = ++i;
+							idx2 = ++i;
+
                         	printf("%s", opcodes_str_names[op_putstatic]);
-                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[++i], \
-                        	attributes[counter].info.Code_attribute.code[++i]);
+                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[idx1], \
+                        	attributes[counter].info.Code_attribute.code[idx2]);
                         	printf("\t\t#%d", pcIdx);
                         	printFMI_str(pcIdx);
                         	break;
@@ -1000,25 +1013,34 @@ void print_attributes (attribute_info *attributes, u2 attr_count, cp_info *pool)
                         	break;
                         case op_invokevirtual: 
                             //i+=2;
+							idx1 = ++i;
+							idx2 = ++i;
+
                         	printf("%s", opcodes_str_names[op_invokevirtual]);
-                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[++i], \
-                        	attributes[counter].info.Code_attribute.code[++i]);
+                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[idx1], \
+                        	attributes[counter].info.Code_attribute.code[idx2]);
                         	printf("\t#%d", pcIdx);
                         	printFMI_str(pcIdx);
                         	break;
                         case op_invokespecial: 
                             //i+=2;
+							idx1 = ++i;
+							idx2 = ++i;
+
                         	printf("%s", opcodes_str_names[op_invokespecial]);
-                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[++i], \
-                        	attributes[counter].info.Code_attribute.code[++i]);
+                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[idx1], \
+                        	attributes[counter].info.Code_attribute.code[idx2]);
                         	printf("\t#%d", pcIdx);
                         	printFMI_str(pcIdx);
                         	break;
                         case op_invokestatic: 
                             //i+=2;
+							idx1 = ++i;
+							idx2 = ++i;
+
                         	printf("%s", opcodes_str_names[op_invokestatic]);
-                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[++i], \
-                        	attributes[counter].info.Code_attribute.code[++i]);
+                        	pcIdx = buildCPindex(attributes[counter].info.Code_attribute.code[idx1], \
+                        	attributes[counter].info.Code_attribute.code[idx2]);
                         	printf("\t#%d", pcIdx);
                         	printFMI_str(pcIdx);
                         	break;
